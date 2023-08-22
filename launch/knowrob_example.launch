@@ -4,7 +4,7 @@
   <env name="KNOWROB_SETTINGS" value="$(arg knowrob_settings)" />
   
   <include file="$(find rosprolog)/launch/rosprolog.launch">
-    <arg name="initial_package" default="knowrob_example" />
+    <arg name="initial_package" default="knowrob_KG_cutting" />
     <arg name="initial_goal" default="urdf_init" />
   </include>
 </launch>
