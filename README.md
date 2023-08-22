@@ -5,7 +5,7 @@ This is a documented example of a KnowRob Package accessing a knowledge graph an
 In contrast to other knowrob packages, it doesn't include an owl directory since we access a knowledge graph.
 The knowledge graph is available at <a href='https://krr.triply.cc/mkumpel/ProductKG/sparql/ProductKG'>triply</a>
 
-In 'src' you can find the source code of this package. 
+In 'src' you can find the source code of this package. It contains a util folder for retrieving the position needed for a cutting action as well as a params folder for retrieving additional parameters needed for performing different cutting actions.
 
 ## Example run:
 
@@ -21,26 +21,15 @@ You can then use the following command to send queries:
 rosrun rosprolog rosprolog_commandline.py
 ```
 
-In 'src/util/pose.pl' we defined `get_better_pose`, as a simple example of
-manipulation of a pose. 
+In 'src/util/pose.pl' we defined `position_to_be_used`, as a simple example of retrieving the pose needed for cutting (it only differentiates between slicing_position and halving_position, the robot can further infer the actual position according to this info). 
 
 ```
-?- get_better_pose([[1.0,1.0,1.0],[0.0, 0.0, 0.0, 1.0]],[[XNew,Y,Z],Rotation]).
-Rotation: [0.0, 0.0, 0.0, 1.0],
-XNew: 2.0,
-Y: 1.0,
-Z: 1.0.
+?- position_to_be_used(SOMA:'Cutting',Pose).
+Pose: slicing_position
 ```
 
-In 'src/model/objects.pl' we define predicates to query and manipulate knowledge in the knowledge base. 
+In 'src/model/objects.pl' we define predicates to query object and task knowledge from the knowledge base. 
 
-To create new knowledge you can use kb_project (different to assert `kb_project` will project the knowledge into the mongo database). The simplest way would be to assert a new triple into the knowledge base (e.g. `kb_project(triple(a,b,c))`). In objects.pl we defined `is_pizza` that allows to create and query new pizza entities:
-
-Creating:
-```
-?- kb_project(is_pizza(P)).
-P: http://www.ease-crc.org/ont/knowrob-example#Pizza_IOTQDJZX.
-```
 
 Querying:
 ```
