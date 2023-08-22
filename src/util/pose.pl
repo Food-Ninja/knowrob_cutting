@@ -1,16 +1,16 @@
-% This header defines an module with one predicate name get_better_pose that get's 2 
-% arguments
+% This header defines a module with one predicate name get_better_pose that gets 1 
+% argument
 :- module(pose,
     [ 
-      get_better_pose/2
+      position_to_be_used/1
     ]).
 
 %% get_better_pose(+Pose, ?NewPose) is det.
 %
-% Example of calculating a new pose from a given pose.
+% /**What position is needed for cutting? Input Action: z.B. SOMA:Dicing. Output: either slicing_position or halving_position*/
 %
-% @param Pose The pose to be manipulated
-% @param NewPose The calculated pose
+% @param Action The action to be performed (cutting, halving, quartering, slicing, julienning, dicing)
+% @param Pose The pose to be used
 %
-get_better_pose([[X,Y,Z],Rotation],[[XNew,Y,Z],Rotation]) :- 
-  XNew is X + 1.0.
+position_to_be_used(Action,Pose):- fc ??
+  rdfs_subclass_of(?node, Action), rdf(?node, owl:'onProperty', cut:'requiresPosition'), rdf(?node, owl:'someValuesFrom', Pose).
