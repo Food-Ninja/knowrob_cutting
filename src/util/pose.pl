@@ -30,5 +30,5 @@
 % @param Action The action to be performed (cutting, halving, quartering, slicing, julienning, dicing)
 % @param Pose The pose to be used
 %
-position_to_be_used(Action,Pose):- fc ??
+position_to_be_used(Action,Pose)?> fc ??
   rdfs_subclass_of(?node, Action), rdf(?node, owl:'onProperty', cut:'requiresPosition'), rdf(?node, owl:'someValuesFrom', Pose).
