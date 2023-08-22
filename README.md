@@ -1,15 +1,15 @@
-# knowrob_example
+# knowrob_KG_cutting
 
-This is a documented example of a KnowRob Package. 
+This is a documented example of a KnowRob Package accessing a knowledge graph and offering modules for querying the knowledge graph for execution of food cutting actions. 
 
-In the subdirectory OWL we stored an example knowledge base. In 'src' you will find the source code of this package. 
+In 'src' you will find the source code of this package. 
 
 ## Example run:
 
 To run the package use the launch file
 
 ```
-roslaunch knowrob_example knowrob_example.launch
+roslaunch knowrob_KG_cutting knowrob_KG_cutting.launch
 ```
 
 You can then use the following command to send queries:
