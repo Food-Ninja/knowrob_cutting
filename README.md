@@ -2,7 +2,10 @@
 
 This is a documented example of a KnowRob Package accessing a knowledge graph and offering modules for querying the knowledge graph for execution of food cutting actions. 
 
-In 'src' you will find the source code of this package. 
+In contrast to other knowrob packages, it doesn't include an owl directory since we access a knowledge graph.
+The knowledge graph is available at <a href='https://krr.triply.cc/mkumpel/ProductKG/sparql/ProductKG'>triply</a>
+
+In 'src' you can find the source code of this package. 
 
 ## Example run:
 
