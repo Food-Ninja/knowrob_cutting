@@ -30,20 +30,9 @@ Pose: slicing_position
 
 In 'src/model/objects.pl' we define predicates to query object and task knowledge from the knowledge base. 
 
-
+For example, one can query the tool to be used for cutting a specific food object.
 Querying:
 ```
-?- is_pizza(P).
-P: http://www.ease-crc.org/ont/knowrob-example#Pizza_IOTQDJZX.
-```
-
-After creating a Pizza we can query for it's ingredients using `has_ingredient`:
-
-```
-?- is_pizza(P), has_ingredient(P,Ingredient).
-Ingredient: http://www.ease-crc.org/ont/knowrob-example#Cheese,
-P: http://www.ease-crc.org/ont/knowrob-example#Pizza_DXLUMEJP ;
-
-Ingredient: http://www.ease-crc.org/ont/knowrob-example#Tomato,
-P: http://www.ease-crc.org/ont/knowrob-example#Pizza_DXLUMEJP.
+?- tool_to_be_used(obo:'FOODON_00003415',Tool).
+Tool: Knife.
 ```
