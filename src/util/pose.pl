@@ -2,7 +2,7 @@
 % argument
 :- module(pose,
     [ 
-      position_to_be_used/1
+      position_to_be_used/2
     ]).
 
 :- use_module(library(semweb/rdf_db)), 
@@ -30,5 +30,5 @@
 % @param Action The action to be performed (cutting, halving, quartering, slicing, julienning, dicing)
 % @param Pose The pose to be used
 %
-position_to_be_used(Action,Pose)?> fc ??
-  rdfs_subclass_of(?node, Action), rdf(?node, owl:'onProperty', cut:'requiresPosition'), rdf(?node, owl:'someValuesFrom', Pose).
+position_to_be_used(Action,Pose):- fc ??
+  rdfs_subclass_of(Node, Action), rdf(Node, owl:'onProperty', cut:'requiresPosition'), rdf(Node, owl:'someValuesFrom', Pose).
