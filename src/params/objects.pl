@@ -1,7 +1,7 @@
 % This header defines an module with predicates that get /number of params as input
 :- module(objects,
 	[
-		tool_to_be_used/1,
+		tool_to_be_used/2,
 	]).
  
 % If you want to load libraries and modules use:
@@ -39,12 +39,12 @@
 % @param Food A food with FoodOn identifier, e.g. obo:FOODON_03301710 (apple)
 %
 /**What tool can be used for cutting the given food? Input Food: z.B. obo:FOODON_03301710 (Apfel)*/
-tool_to_be_used(Food,Tool)?> fc ??
-  rdfs_subclass_of(?node, Food), rdf(?node, owl:'onProperty', SOMA:'hasDisposition'), rdf(?node, owl:'someValuesFrom', ?a), 
-  rdf(?a, owl:'intersectionOf', ?b), rdf(?b, rdf:'first', cut2:'Cuttability'), rdf(?b, rdf:'rest', ?c),
-  rdf(?c, rdf:'rest', ?node2), rdf(?node2, rdf:'first', ?toolnode), rdf(?toolnode, owl:'onProperty', SOMA:'affordsTrigger'),
-  rdf(?toolnode, owl:'allValuesFrom', ?tool), rdf(?tool, owl:'onProperty', DUL:'classifies'), rdf(?tool, owl:'allValuesFrom', ?alltools),
-  rdfs_subclass_of(Tool, ?alltools).
+tool_to_be_used(Food,Tool):- fc ??
+  rdfs_subclass_of(Node, Food), rdf(Node, owl:'onProperty', SOMA:'hasDisposition'), rdf(Node, owl:'someValuesFrom', NodeTwo), 
+  rdf(NodeTwo, owl:'intersectionOf', Intersect), rdf(Intersect, rdf:'first', cut2:'Cuttability'), rdf(Intersect, rdf:'rest', NodeThree),
+  rdf(NodeThree, rdf:'rest', NodeFour), rdf(NodeFour, rdf:'first', Toolnode), rdf(Toolnode, owl:'onProperty', SOMA:'affordsTrigger'),
+  rdf(Toolnode, owl:'allValuesFrom', SomeTool), rdf(SomeTool, owl:'onProperty', DUL:'classifies'), rdf(SomeTool, owl:'allValuesFrom', Alltools),
+  rdfs_subclass_of(Tool, Alltools).
 
 
 
