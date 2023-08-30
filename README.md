@@ -36,3 +36,9 @@ Querying:
 ?- tool_to_be_used(obo:'FOODON_00003415',Tool).
 Tool: Knife.
 ```
+
+Or you can query if a prior action needs to be executed (For quartering, we first perform halving).
+```
+?- retrieve_prior_action(SOMA:'Dicing', PriorAction).
+PriorAction: Julienning.
+```
