@@ -42,3 +42,8 @@ Or you can query if a prior action needs to be executed (For quartering, we firs
 ?- retrieve_prior_action(SOMA:'Dicing', PriorAction).
 PriorAction: Julienning.
 ```
+You can also query for additional actions that need to be performed (an orange needs to be peeled before cutting)
+```
+retrieve_additional_action(obo:'FOODON_03309927', Action).
+Action: StemRemoving
+```
