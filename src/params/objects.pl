@@ -46,7 +46,9 @@ tool_to_be_used(Food,Tool):- fc ??
   rdf(Toolnode, owl:'allValuesFrom', SomeTool), rdf(SomeTool, owl:'onProperty', DUL:'classifies'), rdf(SomeTool, owl:'allValuesFrom', Alltools),
   rdfs_subclass_of(Tool, Alltools).
 
-
+ /**Is a prior action required? (For quartering, we first perform halving) Example input: SOMA:'Dicing'*/
+retrieve_prior_action(Action,PriorAction):- fc??
+ rdfs_subclass_of(Node, Action), rdf(Node, owl:'onProperty', cut:'requiresPriorTask'), rdf(Node, owl:'someValuesFrom', PriorAction).
 
 
 % The following is an example of getting data from the class of an individual:
