@@ -50,6 +50,12 @@ tool_to_be_used(Food,Tool):- fc ??
 retrieve_prior_action(Action,PriorAction):- fc??
  rdfs_subclass_of(Node, Action), rdf(Node, owl:'onProperty', cut:'requiresPriorTask'), rdf(Node, owl:'someValuesFrom', PriorAction).
 
+ /**Is additional action required? (For cutting an orange, it first needs to be peeled) Example input: obo:'FOODON_03309927'*/
+retrieve_additional_action(Food, Action):- fc??
+rdfs_subclass_of(Restriction, Food), rdf(Restriction, owl:'onProperty', cut:'hasPart'), rdf(Restriction, owl:'someValuesFrom', Node),
+rdf(Node, owl:'intersectionOf', Intersection), rdf(Intersection, rdf:'rest', Action), rdf(Action, rdf:'first', ActionNode),
+rdf(ActionNode, owl:'onProperty', SOMA:'affordsTask'), rdf(ActionNode, owl:'someValuesFrom', Action).
+
 
 % The following is an example of getting data from the class of an individual:
 
